@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-include_file('core', 'traphandler', 'class', 'snmp');
+include_file('core', 'Trap', 'class', 'snmp');
 include_file('core', 'Result', 'class', 'snmp');
 include_file('core', 'Notify', 'class', 'snmp');
 
