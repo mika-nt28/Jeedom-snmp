@@ -42,11 +42,24 @@ class snmp extends eqLogic {
 		}
 	}
 	public static function pull($_options) {
-		/*while($f = fgets(STDIN)){
-			$trap_content[] = $f;
+		$Equipement = eqlogic::byId($_options['id']);
+		if (is_object($Equipement) && $Equipement->getIsEnable()) {
+			error_reporting(E_ALL | E_STRICT);
+			$socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+			$result = socket_connect($socket, $Equipement->getLogicalId(), 162);
+			if ($result === false) {
+				log::add('snmp','debug',$Equipement->getHumanName().' Impossible de se connecter en TRAP sur l\'equipement');
+				return;
+			}
+			while(true){
+				$trap_content = '';
+				if (false === ($bytes = socket_recv($socket, $trap_content, 2048, MSG_WAITALL))) 
+					log::add('snmp','debug',$Equipement->getHumanName().' socket_recv() a échoué; raison: ' . socket_strerror(socket_last_error($socket)));
+				}
+				$Trap = new Trap ($trap_content);
+			}
+			socket_close($socket);
 		}
-		# --- load traphandler and process provided trap
-		$Trap = new Trap ($trap_content);
 
 
 		/*
