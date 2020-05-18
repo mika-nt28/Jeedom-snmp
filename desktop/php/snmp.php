@@ -17,7 +17,7 @@
     			<span>{{Configuration}}</span>
   			</div>
   		</div>
-  		<legend><i class="fas fa-table"></i> {{Mes module}}</legend>
+  		<legend><i class="fas fa-table"></i> {{Mes équipements}}</legend>
 	   	<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 		<div class="eqLogicThumbnailContainer">
     		<?php
@@ -75,7 +75,7 @@
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="eqlogictab">
 				<div class="col-lg-6">
-					<legend>Général</legend>
+					<legend>{{Général}}</legend>
 					<form class="form-horizontal">
 						<fieldset>
 							<div class="form-group ">
@@ -128,8 +128,8 @@
 									{{Etat du widget}}
 									<sup>
 										<i class="fa fa-question-circle tooltips" title="Choisissez les options de visibilité et d'activation</br>
-									Si l'équipement n'est pas activé il ne sera pas utilisable dans Jeedom, mais visible sur le dashboard</br>
-									Si l'équipement n'est pas visible il sera caché sur le dashboard, mais utilisable dans Jeedom"></i>
+											Si l'équipement n'est pas activé il ne sera pas utilisable dans Jeedom, mais visible sur le dashboard</br>
+											Si l'équipement n'est pas visible il sera caché sur le dashboard, mais utilisable dans Jeedom"></i>
 									</sup>
 								</label>
 								<div class="col-sm-5">
@@ -139,6 +139,30 @@
 									<input type="checkbox" class="eqLogicAttr" data-label-text="{{Visible}}" data-l1key="isVisible"/>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">{{IP de l'equipement}}								
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="Saisir de l'equipement SNMP a ecouter"></i>
+									</sup>
+								</label>
+								<div class="col-sm-5">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="logicalId" placeholder="{{IP de l'équipement}}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">{{Version SNMP}}
+									<sup>
+										<i class="fa fa-question-circle tooltips" title="Choisissez la version de SNMP"></i>
+									</sup>
+								</label>
+								<div class="col-sm-5">
+									<select class="eqLogicAttr" data-l1key="configuration" data-l2key="snmpver">
+										<option value="1">{{Version 1}}</option>
+										<option value="2">{{Version 2}}</option>
+										<option value="3">{{Version 3}}</option>
+									</select>
+								</div>
+							</div> 
 						</fieldset>
 					</form>
 				</div>			       
