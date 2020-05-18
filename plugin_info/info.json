@@ -6,7 +6,7 @@
 	"author" : "Halbout Michael",
 	"require" : "3.0",
 	"category" : "protocol",
-	"hasOwnDeamon" : true,
+	"hasOwnDeamon" : false,
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"],
  	"documentation" : "https://mika-nt28.github.io/Documentations/snmp/#language#/",
 	"changelog" : "https://mika-nt28.github.io/Documentations/snmp/#language#/changelog"
