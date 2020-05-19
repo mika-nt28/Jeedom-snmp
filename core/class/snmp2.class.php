@@ -2,7 +2,7 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 include_file('core', 'Trap', 'class', 'snmp2');
 include_file('core', 'Result', 'class', 'snmp2');
-include_file('core', 'Notify', 'class', 'snmp2');
+//include_file('core', 'Notify', 'class', 'snmp2');
 
 class snmp2 extends eqLogic {
 	public static function deamon_info() {
@@ -53,8 +53,9 @@ class snmp2 extends eqLogic {
 			}
 			while(true){
 				$trap_content = '';
-				if (false === ($bytes = socket_recv($socket, $trap_content, 2048, MSG_WAITALL))) 
+				if (false === ($bytes = socket_recv($socket, $trap_content, 2048, MSG_WAITALL))) {
 					log::add('snmp2','debug',$Equipement->getHumanName().' socket_recv() a échoué; raison: ' . socket_strerror(socket_last_error($socket)));
+					return;
 				}
 				$Trap = new Trap ($trap_content);
 			}
