@@ -11,10 +11,15 @@
    	<div class="col-xs-12 eqLogicThumbnailDisplay">
   		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
+			<div class="cursor eqLogicAction logoPrimary" data-action="add">
+				<i class="fas fa-plus-circle"></i>
+				<br>
+				<span>{{Ajouter}}</span>
+			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
-      			<i class="fas fa-wrench"></i>
-    			<br>
-    			<span>{{Configuration}}</span>
+				<i class="fas fa-wrench"></i>
+				<br>
+				<span>{{Configuration}}</span>
   			</div>
   		</div>
   		<legend><i class="fas fa-table"></i> {{Mes équipements}}</legend>
