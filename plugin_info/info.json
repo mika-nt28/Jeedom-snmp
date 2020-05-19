@@ -1,13 +1,13 @@
 {
-	"id" : "snmp",
+	"id" : "snmp2",
 	"name" : "SNMP",
-	"description" : "Ce plugin, permet de mettre en oeuvre le porotocle SNMP",
+	"description" : "Ce plugin, permet de mettre en oeuvre le porotocle SNMP TRAP",
 	"licence" : "AGPL",
 	"author" : "Halbout Michael",
 	"require" : "3.0",
-	"category" : "protocol",
+	"category" : "automation protocol",
 	"hasOwnDeamon" : true,
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"],
- 	"documentation" : "https://mika-nt28.github.io/Documentations/snmp/#language#/",
-	"changelog" : "https://mika-nt28.github.io/Documentations/snmp/#language#/changelog"
+ 	"documentation" : "https://mika-nt28.github.io/Documentations/snmp2/#language#/",
+	"changelog" : "https://mika-nt28.github.io/Documentations/snmp2/#language#/changelog"
 }
