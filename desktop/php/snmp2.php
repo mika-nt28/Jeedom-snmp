@@ -2,7 +2,7 @@
 	if (!isConnect('admin')) {
 		throw new Exception('{{401 - Accès non autorisé}}');
 	}
-	$plugin = plugin::byId('snmp');
+	$plugin = plugin::byId('snmp2');
 	sendVarToJS('eqType', $plugin->getId());
 	$eqLogics = eqLogic::byType($plugin->getId());
 ?>
@@ -183,6 +183,6 @@
 </div>
 
 <?php 
-include_file('desktop', 'snmp', 'js', 'snmp');
+include_file('desktop', 'snmp2', 'js', 'snmp2');
 include_file('core', 'plugin.template', 'js'); 
 ?>
