@@ -9,13 +9,8 @@
 			$this->filename = $filename;
 			// save params
 			$this->params = (object) $params;
-			// set requested notification methods
-			$this->set_allowed_methods($notification_methods);
 			// save trap details
 			$this->trap_details = $trap_details;
-		}
-		private function set_allowed_methods ($notification_methods) {
-			$this->notification_methods = $notification_methods;
 		}
 		private function write_error ($error) {
 			// we need object
