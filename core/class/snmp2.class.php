@@ -11,7 +11,7 @@ class snmp2 extends eqLogic {
 		$return['launchable'] = 'ok';
 		$return['state'] = 'ok';		
 		foreach(eqLogic::byType('snmp2') as $Equipement){			
-			if($Equipement->getIsEnable() && count($Equipement->getCmd()) > 0){
+			if($Equipement->getIsEnable()){
 				$cron = cron::byClassAndFunction('snmp2', 'pull', array('id' => $Equipement->getId()));
 				if(!is_object($cron) || !$cron->running()){
 					$return['state'] = 'nok';
@@ -28,7 +28,7 @@ class snmp2 extends eqLogic {
 		//log::remove('snmp2');
 		self::deamon_stop();
 		foreach(eqLogic::byType('snmp2') as $Equipement){		
-			if($Equipement->getIsEnable() && count($Equipement->getCmd()) > 0)
+			if($Equipement->getIsEnable())
 				$Equipement->CreateDemon();
 		}
 	}
