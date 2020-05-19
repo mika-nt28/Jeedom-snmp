@@ -1,18 +1,18 @@
 <?php
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-include_file('core', 'Trap', 'class', 'snmp');
-include_file('core', 'Result', 'class', 'snmp');
-include_file('core', 'Notify', 'class', 'snmp');
+include_file('core', 'Trap', 'class', 'snmp2');
+include_file('core', 'Result', 'class', 'snmp2');
+include_file('core', 'Notify', 'class', 'snmp2');
 
-class snmp extends eqLogic {
+class snmp2 extends eqLogic {
 	public static function deamon_info() {
 		$return = array();
 		$return['log'] = 'eibd';	
 		$return['launchable'] = 'ok';
 		$return['state'] = 'ok';		
-		foreach(eqLogic::byType('snmp') as $Equipement){			
+		foreach(eqLogic::byType('snmp2') as $Equipement){			
 			if($Equipement->getIsEnable() && count($Equipement->getCmd()) > 0){
-				$cron = cron::byClassAndFunction('snmp', 'pull', array('id' => $Equipement->getId()));
+				$cron = cron::byClassAndFunction('snmp2', 'pull', array('id' => $Equipement->getId()));
 				if(!is_object($cron) || !$cron->running()){
 					$return['state'] = 'nok';
 					return $return;
@@ -25,16 +25,16 @@ class snmp extends eqLogic {
 		$deamon_info = self::deamon_info();
 		if ($deamon_info['launchable'] != 'ok') 
 			return;
-		//log::remove('snmp');
+		//log::remove('snmp2');
 		self::deamon_stop();
-		foreach(eqLogic::byType('snmp') as $Equipement){		
+		foreach(eqLogic::byType('snmp2') as $Equipement){		
 			if($Equipement->getIsEnable() && count($Equipement->getCmd()) > 0)
 				$Equipement->CreateDemon();
 		}
 	}
 	public static function deamon_stop() {
-		foreach(eqLogic::byType('snmp') as $Equipement){
-			$cron = cron::byClassAndFunction('snmp', 'pull', array('id' => $Equipement->getId()));
+		foreach(eqLogic::byType('snmp2') as $Equipement){
+			$cron = cron::byClassAndFunction('snmp2', 'pull', array('id' => $Equipement->getId()));
 			if (is_object($cron)) {
 				$cron->stop();
 				$cron->remove();
@@ -48,13 +48,13 @@ class snmp extends eqLogic {
 			$socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
 			$result = socket_connect($socket, $Equipement->getLogicalId(), 162);
 			if ($result === false) {
-				log::add('snmp','debug',$Equipement->getHumanName().' Impossible de se connecter en TRAP sur l\'equipement');
+				log::add('snmp2','debug',$Equipement->getHumanName().' Impossible de se connecter en TRAP sur l\'equipement');
 				return;
 			}
 			while(true){
 				$trap_content = '';
 				if (false === ($bytes = socket_recv($socket, $trap_content, 2048, MSG_WAITALL))) 
-					log::add('snmp','debug',$Equipement->getHumanName().' socket_recv() a échoué; raison: ' . socket_strerror(socket_last_error($socket)));
+					log::add('snmp2','debug',$Equipement->getHumanName().' socket_recv() a échoué; raison: ' . socket_strerror(socket_last_error($socket)));
 				}
 				$Trap = new Trap ($trap_content);
 			}
@@ -73,10 +73,10 @@ class snmp extends eqLogic {
 		*/
 	}
 	private function CreateDemon() {
-		$cron =cron::byClassAndFunction('snmp', 'pull', array('id' => $this->getId()));
+		$cron =cron::byClassAndFunction('snmp2', 'pull', array('id' => $this->getId()));
 		if (!is_object($cron)) {
 			$cron = new cron();
-			$cron->setClass('snmp');
+			$cron->setClass('snmp2');
 			$cron->setFunction('pull');
 			$cron->setOption(array('id' => $this->getId()));
 			$cron->setEnable(1);
@@ -90,7 +90,7 @@ class snmp extends eqLogic {
 		return $cron;
 	}
 }
-class snmpCmd extends cmd {
+class snmp2Cmd extends cmd {
 
 	public function execute($_options = null) {	
 	}
