@@ -2,7 +2,7 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 include_file('core', 'Trap', 'class', 'snmp2');
 include_file('core', 'Result', 'class', 'snmp2');
-//include_file('core', 'Notify', 'class', 'snmp2');
+include_file('core', 'Notify', 'class', 'snmp2');
 
 class snmp2 extends eqLogic {
 	public static function deamon_info() {
